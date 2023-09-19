@@ -18,29 +18,23 @@ GENDER_KEY = "Dim1"
 @task
 def produce_traffic_data():
     """
-    Inhuman Insurance, Inc. Artificial Intelligence System robot.
+    Inhuman Insurance, Inc. Artificial Intelligence System automation.
     Produces traffic data work items.
     """
-    # download_traffic_data()
+    http.download(
+        url="https://github.com/robocorp/inhuman-insurance-inc/raw/main/RS_198.json",
+        target_file=TRAFFIC_JSON_FILE_PATH,
+        overwrite=True,
+    )
     traffic_data = load_traffic_data_as_table()
     filtered_data = filter_and_sort_traffic_data(traffic_data)
     filtered_data = get_latest_data_by_country(filtered_data)
     payloads = create_work_item_payloads(filtered_data)
     save_work_item_payloads(payloads)
 
-
-def download_traffic_data():
-    http.download(
-        url="https://github.com/robocorp/inhuman-insurance-inc/raw/main/RS_198.json",
-        target_file=TRAFFIC_JSON_FILE_PATH,
-        overwrite=True,
-    )
-
-
 def load_traffic_data_as_table():
     json_data = json.load_json_from_file(TRAFFIC_JSON_FILE_PATH)
-    table_from_json = table.create_table(json_data["value"])
-    return table_from_json
+    return table.create_table(json_data["value"])
 
 
 def filter_and_sort_traffic_data(data):
