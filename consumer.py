@@ -1,7 +1,6 @@
-from robocorp.tasks import task
-from robocorp import workitems
-
 import requests
+from robocorp import workitems
+from robocorp.tasks import task
 
 
 @task

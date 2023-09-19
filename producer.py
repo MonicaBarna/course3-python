@@ -1,7 +1,5 @@
+from robocorp import http, workitems
 from robocorp.tasks import task
-from robocorp import http
-from robocorp import workitems
-
 from RPA.JSON import JSON
 from RPA.Tables import Tables
 
